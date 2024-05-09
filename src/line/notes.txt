@@ -1,0 +1,18 @@
+Lines =>
+    parameters (point , point , color)            where point (x,y)
+
+========================cartisain equation========================
+
+(y - y1) / (x - x1)  = (y2-y1) / (x2-x1) => slope m
+
+1 -    x = x1 , y = y1
+2 -    x++ compute y by the equation
+3 -    setpixel(x,round(y))  y => might have a fraction
+4 -    loop from 2
+
+=> slope > 1         work with y
+1 -    x = x1 , y = y1
+2 -    y++ compute x by the equation
+3 -    setpixel(round(x),y)  x => might have a fraction
+4 -    loop from 2
+
