@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cpp_files=(
-    # "src/LineAlgorithmsLineAlgorithms.cpp"
     # "src/circle"
     "src/main.cpp"
     "src/line/line.cpp"
