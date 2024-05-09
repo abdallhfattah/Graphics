@@ -102,7 +102,7 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
         int x1 = LOWORD(lParam);
         int y1 = HIWORD(lParam);
         cout << x1 << " " << y1 << el;
-        DrawLineNaive(hdc , x , y , x1 , y1 , c);
+        DrawLineBresenham(hdc , x , y , x1 , y1 , c);
         break;
     }
     case WM_CLOSE:
