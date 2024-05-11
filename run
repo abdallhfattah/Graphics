@@ -1,9 +1,10 @@
 #!/bin/bash
 
 cpp_files=(
-    # "src/circle"
+    "src/circle/circle.cpp"
     "src/main.cpp"
-    "src/line/line.cpp"
+    "src/fillingAlgorithm/filling.cpp"
+    # "src/line/line.cpp"
 )
 
 output_file="output.exe"
