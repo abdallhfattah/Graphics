@@ -4,15 +4,20 @@
 #define UNICODE
 #endif
 
+/* Includes */
 #include <tchar.h>
 #include <windows.h>
-#include <iostream>
 #include <wingdi.h>
-#include "line/line.h"
-#include <cmath>
+#include <utility>
+#include <vector>
+#include <iostream>
+// #include <cmath>
 
-using namespace std;
-// #include "LineAlgorithms.h"
+#include "circle/circle.h"
+#include "fillingAlgorithm/filling.h"
+
+// #include "FillingAlgorithms/FillingAlgorithms.h"
+
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 
@@ -40,7 +45,8 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
     wincl.cbClsExtra = 0;      /* No extra bytes after the window class */
     wincl.cbWndExtra = 0;      /* structure or the window instance */
     /* Use Windows's default colour as the background of the window */
-    wincl.hbrBackground = (HBRUSH)COLOR_BACKGROUND;
+    COLORREF color = RGB(0, 0, 0);
+    wincl.hbrBackground = (HBRUSH)color;
 
     /* Register the window class, and if it fails quit the program */
     if (!RegisterClassEx(&wincl))
@@ -48,17 +54,18 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
 
     /* The class is registered, let's create the program*/
     hwnd =
-        CreateWindowEx(0,                                                               /* Extended possibilites for variation */
-                       szClassName,                                                     /* Classname */
-                       _T(" Template Windows App"),                                     /* Title Text */
-                       WS_OVERLAPPEDWINDOW,                                             /* default window */
-                       CW_USEDEFAULT,                                                   /* Windows decides the position */
-                       CW_USEDEFAULT, /* where the window ends up on the screen */ 544, /* The programs width */
-                       375,                                                             /* and height in pixels */
-                       HWND_DESKTOP,                                                    /* The window is a child-window to desktop */
-                       NULL,                                                            /* No menu */
-                       hThisInstance,                                                   /* Program Instance handler */
-                       NULL                                                             /* No Window Creation data */
+        CreateWindowEx(0,                           /* Extended possibilites for variation */
+                       szClassName,                 /* Classname */
+                       _T(" Template Windows App"), /* Title Text */
+                       WS_OVERLAPPEDWINDOW,         /* default window */
+                       CW_USEDEFAULT,               /* Windows decides the position */
+                       CW_USEDEFAULT,               /* where the window ends up on the screen */
+                       1200,                        /* The programs width */
+                       1200,                        /* and height in pixels */
+                       HWND_DESKTOP,                /* The window is a child-window to desktop */
+                       NULL,                        /* No menu */
+                       hThisInstance,               /* Program Instance handler */
+                       NULL                         /* No Window Creation data */
         );
 
     /* Make the window visible on the screen */
@@ -77,32 +84,62 @@ int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszA
     return messages.wParam;
 }
 
-/*  This function is called by the Windows function DispatchMessage()  */
-
 LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     HDC hdc;
     static int x, y;
+    // int count = 0, length = 5;
+    // static vector<pair<int, int>> points;
+    static COLORREF c = RGB(255, 255, 255);
     switch (message)
     {
+
     case WM_LBUTTONDOWN:
-    {
-        // hdc = GetDC(hwnd);
+    { // Down Left Click
+        hdc = GetDC(hwnd);
         x = LOWORD(lParam);
         y = HIWORD(lParam);
-        // ReleaseDC(hwnd, hdc);
-        cout << x << " " << y << el;
+
+        ReleaseDC(hwnd, hdc);
         break;
     }
 
-    case WM_LBUTTONUP:
-    { // Release of left click
+    // WM_RBUTTONDOWN -> Down Right Click
+    // WM_LBUTTONUP -> relase
+    case WM_RBUTTONDOWN:
+    {
         hdc = GetDC(hwnd);
-        COLORREF c = RGB(255, 0, 0);
+        x = LOWORD(lParam);
+        y = HIWORD(lParam);
+
+        // drawing 8 with filling alogrithm
+        // COLORREF white = RGB(255, 255, 255);
+        // int R = 50;
+        // Circle eight1 = Circle(hdc, x, y, x, y, white, 80);
+        // Circle eight2 = Circle(hdc, x, y, x, y, white, 40);
+        // Circle eight3 = Circle(hdc, x, y - 130, x, y, white, 70);
+        // Circle eight4 = Circle(hdc, x, y - 130, x, y, white, 35);
+        // eight1.DrawCircleBresenham2();
+        // eight2.DrawCircleBresenham2();
+        // eight3.DrawCircleBresenham2();
+        // eight4.DrawCircleBresenham2();
+        // MyFloodFill(hdc, x, y - 42, white, white);
+        // MyFloodFill(hdc, x, y - 62, white, white);
+        // MyFloodFill(hdc, x, y - 82, white, white);
+
+        ReleaseDC(hwnd, hdc);
+    }
+    case WM_LBUTTONUP:
+    {
+        hdc = GetDC(hwnd);
+        // COLORREF c = RGB(255, 0, 0);
         int x1 = LOWORD(lParam);
         int y1 = HIWORD(lParam);
-        cout << x1 << " " << y1 << el;
-        DrawLineBresenham(hdc , x , y , x1 , y1 , c);
+
+        // Drawing Face
+        Circle face = Circle(hdc, x, y, x1, y1, c);
+        face.DrawFace();
+        ReleaseDC(hwnd, hdc);
         break;
     }
     case WM_CLOSE:
