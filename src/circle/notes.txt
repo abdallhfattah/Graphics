@@ -1,0 +1,24 @@
+==========================circle Drawing Algrithms==========================
+
+circle parameters
+=>      (Xc , Yc) , Radius , Color
+
+Equation = (X - Xc)^2 + (Y - Yc)^2 = R^2
+
+center about the origin => X^2 + Y^2 = R^2             (Xc,Yc) = (0,0)
+
+for complixty you would always Assume that your center about the Origin
+and draw (Xc + X , Yc + Y)
+
+8 - symmetry
+(X , Y) =>
+        (-X , Y)
+        (-X , -Y)
+        (X  , -Y)
+        == swap == x^2 + y^2 = R^2
+        (Y  , X)
+        (-Y , X)
+        (-Y , -X)
+        (-Y , -X)
+
+Generated 8 points From 1 point reduces the complixty so you would only work in (1/8 of the circle)
