@@ -7,10 +7,10 @@ CXXFLAGS = -mwindows -lgdi32 -static
 
 # Source files
 CPP_FILES = \
+			src/circle/circle.cpp \
 			src/main.cpp \
-			src/line/line.cpp \
-			# src/circle/circle.cpp \
-
+			# src/fillingAlgorithm/filling.cpp \
+			# src/line/line.cpp \
 
 # Output file
 OUTPUT_FILE = output.exe
