@@ -18,14 +18,7 @@ This repository contains implementations of various graphics algorithms, includi
 - Boundary Fill Algorithm
 - Flood Fill Algorithm
 
-## Usage
-
-[Add usage instructions here]
-
 ## Contributions
 
 Contributions are welcome! If you have an algorithm to add or an improvement to an existing one, feel free to submit a pull request.
 
-## License
-
-[Include license information here]
